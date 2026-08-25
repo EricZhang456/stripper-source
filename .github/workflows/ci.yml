@@ -218,40 +218,40 @@ jobs:
         if: matrix.target.os_name == 'linux'
         run: |
           echo "MMSOURCE=$GITHUB_WORKSPACE/mmsource" >> $GITHUB_ENV
-          echo "HL2SDK=$GITHUB_WORKSPACE/hl2sdk-ep1" >> $GITHUB_ENV
-          echo "HL2SDKOB=$GITHUB_WORKSPACE/hl2sdk-ep2" >> $GITHUB_ENV
+          echo "HL2SDKEPISODE1=$GITHUB_WORKSPACE/hl2sdk-ep1" >> $GITHUB_ENV
+          echo "HL2SDKORANGEBOX=$GITHUB_WORKSPACE/hl2sdk-ep2" >> $GITHUB_ENV
           echo "HL2SDKTF2=$GITHUB_WORKSPACE/hl2sdk-tf2" >> $GITHUB_ENV
           echo "HL2SDKDODS=$GITHUB_WORKSPACE/hl2sdk-dods" >> $GITHUB_ENV
           echo "HL2SDKHL2DM=$GITHUB_WORKSPACE/hl2sdk-hl2dm" >> $GITHUB_ENV
-          echo "HL2SDKND=$GITHUB_WORKSPACE/hl2sdk-nd" >> $GITHUB_ENV
+          echo "HL2SDKNUCLEARDAWN=$GITHUB_WORKSPACE/hl2sdk-nd" >> $GITHUB_ENV
           echo "HL2SDKL4D=$GITHUB_WORKSPACE/hl2sdk-l4d" >> $GITHUB_ENV
           echo "HL2SDKL4D2=$GITHUB_WORKSPACE/hl2sdk-l4d2" >> $GITHUB_ENV
           echo "HL2SDKCSS=$GITHUB_WORKSPACE/hl2sdk-css" >> $GITHUB_ENV
           echo "HL2SDKCSGO=$GITHUB_WORKSPACE/hl2sdk-csgo" >> $GITHUB_ENV
           echo "HL2SDKINSURGENCY=$GITHUB_WORKSPACE/hl2sdk-ins" >> $GITHUB_ENV
-          echo "HL2SDK2013=$GITHUB_WORKSPACE/hl2sdk-sdk2013" >> $GITHUB_ENV
+          echo "HL2SDKSDK2013=$GITHUB_WORKSPACE/hl2sdk-sdk2013" >> $GITHUB_ENV
           echo "HL2SDKBMS=$GITHUB_WORKSPACE/hl2sdk-bms" >> $GITHUB_ENV
 
       - name: Set environment variables (Windows)
         if: matrix.target.os_name == 'windows'
         run: |
           echo "MMSOURCE=$env:GITHUB_WORKSPACE/mmsource" >> $env:GITHUB_ENV
-          echo "HL2SDK=$env:GITHUB_WORKSPACE/hl2sdk-ep1" >> $env:GITHUB_ENV
-          echo "HL2SDKOB=$env:GITHUB_WORKSPACE/hl2sdk-ep2" >> $env:GITHUB_ENV
+          echo "HL2SDKEPISODE1=$env:GITHUB_WORKSPACE/hl2sdk-ep1" >> $env:GITHUB_ENV
+          echo "HL2SDKORANGEBOX=$env:GITHUB_WORKSPACE/hl2sdk-ep2" >> $env:GITHUB_ENV
           echo "HL2SDKTF2=$env:GITHUB_WORKSPACE/hl2sdk-tf2" >> $env:GITHUB_ENV
           echo "HL2SDKDODS=$env:GITHUB_WORKSPACE/hl2sdk-dods" >> $env:GITHUB_ENV
           echo "HL2SDKHL2DM=$env:GITHUB_WORKSPACE/hl2sdk-hl2dm" >> $env:GITHUB_ENV
-          echo "HL2SDKND=$env:GITHUB_WORKSPACE/hl2sdk-nd" >> $env:GITHUB_ENV
+          echo "HL2SDKNUCLEARDAWN=$env:GITHUB_WORKSPACE/hl2sdk-nd" >> $env:GITHUB_ENV
           echo "HL2SDKL4D=$env:GITHUB_WORKSPACE/hl2sdk-l4d" >> $env:GITHUB_ENV
           echo "HL2SDKL4D2=$env:GITHUB_WORKSPACE/hl2sdk-l4d2" >> $env:GITHUB_ENV
           echo "HL2SDKCSS=$env:GITHUB_WORKSPACE/hl2sdk-css" >> $env:GITHUB_ENV
           echo "HL2SDKCSGO=$env:GITHUB_WORKSPACE/hl2sdk-csgo" >> $env:GITHUB_ENV
           echo "HL2SDKINSURGENCY=$env:GITHUB_WORKSPACE/hl2sdk-ins" >> $env:GITHUB_ENV
-          echo "HL2SDK2013=$env:GITHUB_WORKSPACE/hl2sdk-sdk2013" >> $env:GITHUB_ENV
+          echo "HL2SDKSDK2013=$env:GITHUB_WORKSPACE/hl2sdk-sdk2013" >> $env:GITHUB_ENV
           echo "HL2SDKBMS=$env:GITHUB_WORKSPACE/hl2sdk-bms" >> $env:GITHUB_ENV
-          echo "HL2SDK-DARKM=$env:GITHUB_WORKSPACE/hl2sdk-darkm" >> $env:GITHUB_ENV
-          echo "HL2SDK-SWARM=$env:GITHUB_WORKSPACE/hl2sdk-swarm" >> $env:GITHUB_ENV
-          echo "HL2SDK-BGT=$env:GITHUB_WORKSPACE/hl2sdk-bgt" >> $env:GITHUB_ENV
+          echo "HL2SDKDARKM=$env:GITHUB_WORKSPACE/hl2sdk-darkm" >> $env:GITHUB_ENV
+          echo "HL2SDKSWARM=$env:GITHUB_WORKSPACE/hl2sdk-swarm" >> $env:GITHUB_ENV
+          echo "HL2SDKBGT=$env:GITHUB_WORKSPACE/hl2sdk-bgt" >> $env:GITHUB_ENV
 
       - name: Build (Linux)
         if: matrix.target.os_name == 'linux'
