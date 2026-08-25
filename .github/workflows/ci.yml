@@ -306,7 +306,7 @@ jobs:
             [ -d "${dest}/addons/stripper/dumps" ] || mkdir -p "${dest}/addons/stripper/dumps"
             if [ "${os_name}" = "windows" ]; then
               asset="stripper-${version}-windows.zip"
-              (cd "pkg-${os_name}" && zip -r "../${asset}" *)
+              (cd "${dest}" && zip -r "../${asset}" *)
             else
               # fix permissions of the dlls first
               pushd "package-${os_name}"/addons/stripper/bin
@@ -316,7 +316,7 @@ jobs:
               popd
               popd
               asset="stripper-${version}-linux.tar.gz"
-              (cd "pkg-${os_name}" && tar -czf "../${asset}" .)
+              (cd "${dest}" && tar -czf "../${asset}" .)
             fi
             assets="${assets} ${asset}"
           done
