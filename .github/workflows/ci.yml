@@ -26,7 +26,7 @@ jobs:
           echo "version=${base_version}-git${build_number}" >> "$GITHUB_OUTPUT"
 
   build:
-    name: ${{ matrix.target.os_name }}-${{ matrix.target.arch }}
+    name: ${{ matrix.target.os_name }}
     needs: version
     runs-on: ${{ matrix.target.os }}
     container: ${{ matrix.target.container }}
@@ -36,20 +36,10 @@ jobs:
         target:
           - os: ubuntu-latest
             os_name: linux
-            arch: x86
             container: ghcr.io/alliedmodders/build-containers/debian11-clang22:latest
           - os: ubuntu-latest
             os_name: linux
-            arch: x86_64
             container: ghcr.io/alliedmodders/build-containers/debian11-clang22:latest
-          - os: windows-latest
-            os_name: windows
-            arch: x86
-            msvc_arch: x86
-          - os: windows-latest
-            os_name: windows
-            arch: x86_64
-            msvc_arch: amd64
 
     steps:
       - name: Checkout
@@ -63,12 +53,6 @@ jobs:
         uses: actions/setup-python@v7
         with:
           python-version: '3.14'
-
-      - name: Setup MSVC (Windows)
-        if: matrix.target.os_name == 'windows'
-        uses: ilammy/msvc-dev-cmd@v1
-        with:
-          arch: ${{ matrix.target.msvc_arch }}
 
       - name: Install AMBuild
         if: matrix.target.os_name == 'windows'
@@ -265,7 +249,6 @@ jobs:
           python3 ./configure.py \
             -o build \
             --sdks episode1,orangebox,tf2,dods,hl2dm,nucleardawn,l4d,l4d2,css,csgo,insurgency,sdk2013,bms \
-            --targets ${{ matrix.target.arch }} \
             --enable-optimize
           cd build
           ambuild
@@ -279,7 +262,6 @@ jobs:
           python ./configure.py \
             -o build \
             --sdks episode1,orangebox,tf2,dods,hl2dm,nucleardawn,l4d,l4d2,css,csgo,insurgency,sdk2013,bms,darkm,swarm,bgt \
-            --targets ${{ matrix.target.arch }} \
             --enable-optimize
           cd build
           ambuild
@@ -287,7 +269,7 @@ jobs:
       - name: Upload package artifact
         uses: actions/upload-artifact@v7
         with:
-          name: pkg-${{ matrix.target.os_name }}-${{ matrix.target.arch }}
+          name: pkg-${{ matrix.target.os_name }}
           path: build/package
           if-no-files-found: error
 
@@ -318,13 +300,9 @@ jobs:
           assets=""
           for os_name in windows linux; do
             dest="package-${os_name}/"
-            mkdir -p "${dest}"
-            for dir in artifacts/pkg-${os_name}-*/; do
-              cp -a "${dir}." "${dest}/"
-            done
             if [ "${os_name}" = "windows" ]; then
               asset="stripper-${version}-windows.zip"
-              (cd "package-${os_name}" && zip -r "../${asset}" *)
+              (cd "pkg-${os_name}" && zip -r "../${asset}" *)
             else
               # fix permissions of the dlls first
               pushd "package-${os_name}"/addons/stripper/bin
@@ -334,7 +312,7 @@ jobs:
               popd
               popd
               asset="stripper-${version}-linux.tar.gz"
-              (cd "package-sm${label}-${os_name}" && tar -czf "../${asset}" .)
+              (cd "pkg-${os_name}" && tar -czf "../${asset}" .)
             fi
             assets="${assets} ${asset}"
           done
