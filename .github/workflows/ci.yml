@@ -37,9 +37,8 @@ jobs:
           - os: ubuntu-latest
             os_name: linux
             container: ghcr.io/alliedmodders/build-containers/debian11-clang22:latest
-          - os: ubuntu-latest
-            os_name: linux
-            container: ghcr.io/alliedmodders/build-containers/debian11-clang22:latest
+          - os: windows-latest
+            os_name: windows
 
     steps:
       - name: Checkout
