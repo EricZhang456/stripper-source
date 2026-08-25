@@ -83,7 +83,7 @@ jobs:
           submodules: recursive
 
       # GitHub Actions really should have a native way to write for loops
-      - name: Fetch Episide 1 HL2SDK
+      - name: Fetch Episode 1 HL2SDK
         uses: actions/checkout@v7
         with:
           repository: alliedmodders/hl2sdk
