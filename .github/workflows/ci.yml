@@ -299,6 +299,7 @@ jobs:
           assets=""
           for os_name in windows linux; do
             dest="package-${os_name}/"
+            cp -r "artifacts/${dest}/" "${dest}/"
             if [ "${os_name}" = "windows" ]; then
               asset="stripper-${version}-windows.zip"
               (cd "pkg-${os_name}" && zip -r "../${asset}" *)
