@@ -265,6 +265,11 @@ jobs:
           cd build
           ambuild
 
+      - name: Preserve dumps directory
+        shell: bash
+        run: |
+          touch build/package/addons/stripper/dumps/.keep
+        
       - name: Upload package artifact
         uses: actions/upload-artifact@v7
         with:
@@ -300,7 +305,7 @@ jobs:
           for os_name in windows linux; do
             dest="package-${os_name}/"
             mkdir "${dest}"
-            cp -r "artifacts/${dest}/*" "${dest}/"
+            cp -r "artifacts/pkg-${os_name}/*" "${dest}/"
             if [ "${os_name}" = "windows" ]; then
               asset="stripper-${version}-windows.zip"
               (cd "pkg-${os_name}" && zip -r "../${asset}" *)
