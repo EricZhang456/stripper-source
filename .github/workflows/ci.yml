@@ -259,6 +259,8 @@ jobs:
           CC: clang-22
           CXX: clang++-22
         run: |
+          # add to safe directory so generate_headers.py can use git commands
+          git config --global --add safe.directory "$GITHUB_WORKSPACE"
           python3 ./configure.py \
             -o build \
             --sdks episode1,orangebox,tf2,dods,hl2dm,nucleardawn,l4d,l4d2,css,csgo,insurgency,sdk2013,bms \
@@ -271,6 +273,8 @@ jobs:
         if: matrix.target.os_name == 'windows'
         shell: bash
         run: |
+          # add to safe directory so generate_headers.py can use git commands
+          git config --global --add safe.directory "$env:GITHUB_WORKSPACE"
           python ./configure.py \
             -o build \
             --sdks episode1,orangebox,tf2,dods,hl2dm,nucleardawn,l4d,l4d2,css,csgo,insurgency,sdk2013,bms,darkm,swarm,bgt \
