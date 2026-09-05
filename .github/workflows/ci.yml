@@ -2,9 +2,9 @@ name: CI
 
 on:
   push:
-    branches: [master]
+    branches: [sdks]
   pull_request:
-    branches: [master]
+    branches: [sdks]
 
 permissions:
   contents: read
@@ -180,7 +180,7 @@ jobs:
   release:
     name: Release
     needs: [version, build]
-    if: github.event_name == 'push' && github.ref == 'refs/heads/master'
+    if: github.event_name == 'push' && github.ref == 'refs/heads/sdks'
     runs-on: ubuntu-latest
     permissions:
       contents: write
