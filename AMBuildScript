@@ -64,7 +64,7 @@ class MMSConfig(object):
 		import re
 		with open(os.path.join(builder.sourcePath, 'product.version'), 'r') as fp:
 			productContents = fp.read()
-		m = re.match('(\\d+)\\.(\\d+)\\.(\\d+).*', productContents)
+		m = re.match(r'(\\d+)\\.(\\d+)\\.(\\d+).*', productContents)
 		if m is None:
 			self.productVersion = '1.0.0'
 		else:
@@ -117,6 +117,9 @@ class MMSConfig(object):
 					'-Wno-uninitialized',
 					'-Wno-unused',
 					'-Wno-switch',
+					'-Wno-array-bounds',
+					'-Wno-unknown-pragmas',
+					'-Wno-dangling-else',
 					'-msse',
 					'-fPIC',
 				]
@@ -193,13 +196,7 @@ class MMSConfig(object):
 			cxx.includes += [os.path.join(builder.buildPath, 'includes')]
 
 	def AddVersioning(self, binary):
-		if binary.compiler.target.platform == 'windows':
-			binary.sources += ['version.rc']
-			binary.compiler.rcdefines += [
-				'BINARY_NAME="{0}"'.format(binary.outputFile),
-				'RC_COMPILE',
-			]
-		elif binary.compiler.target.platform == 'mac' and binary.type == 'library':
+		if binary.compiler.target.platform == 'mac' and binary.type == 'library':
 			binary.compiler.postlink += [
 				'-compatibility_version', '1.0.0',
 				'-current_version', self.productVersion,
